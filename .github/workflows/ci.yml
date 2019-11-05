@@ -25,5 +25,6 @@ jobs:
           poetry install
 
           poetry run black --check .
-          poetry run pylint sqreen
+          poetry run pylint app.py sqreentest
+          poetry run mypy app.py sqreentest
           poetry run pytest

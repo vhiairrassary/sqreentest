@@ -1,11 +1,16 @@
 [tool.poetry]
-name = "sqreen"
+name = "sqreentest"
 version = "0.1.0"
 description = ""
 authors = ["Victor Hiairrassary <victor.hiairrassary@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
+flask = "^1.1"
+sqreen = "^1.16"
+python-dotenv = "^0.10.3"
+mypy = "^0.740.0"
+twilio = "^6.33"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
