@@ -60,6 +60,9 @@ successful response (for example the infrastructure powering the destination ser
 2. In the application, sample webhook payload is a JSON object while `curl` command is a JSON array as well as the data
 sent: ![](./docs/webhook-sample.png)
 
+Same issue with the webhook sent when clicking on "Save Webhook", it also misses some keys defined in the
+specification: ![](./docs/missing-keys.png)
+
 3. Sqreen does not seem to expose typings, which cause `mypy` to fail with:
 ```
 > poetry run mypy app.py sqreentest
