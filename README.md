@@ -24,8 +24,9 @@ directly, then they are aggregated).
 ## Result
 
 Notes:
-- Use `ngrok` to be able to expose the server to Sqreen.
-- Use `Github CI` instead of `CircleCI` or `TravisCI` (which I already know so I wanted to test `Github CI`).
+- You need to specify env. vars. in the `.env` file.
+- You can use `ngrok` to be able to expose the server to Sqreen.
+- The project uses `Github CI` instead of `CircleCI` or `TravisCI` (which I already know so I wanted to test `Github CI`).
 - A pre-release of `black` is used until its installation requirements are fixed. 
 
 Installation:
@@ -38,7 +39,7 @@ Test:
 poetry run black --check .
 poetry run pylint app.py sqreentest
 poetry run mypy app.py sqreentest
-poetry run pytest
+env $(cat .env | xargs) poetry run pytest
 ```
 
 Launch application:

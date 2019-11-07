@@ -27,4 +27,4 @@ jobs:
           poetry run black --check .
           poetry run pylint app.py sqreentest
           poetry run mypy app.py sqreentest
-          poetry run pytest
+          env $(cat .env | xargs) poetry run pytest
