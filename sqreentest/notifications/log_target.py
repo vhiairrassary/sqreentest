@@ -9,5 +9,5 @@ class LogTarget(Target):
 
     def handle(self, events: Sequence[Event]) -> None:
         for event in events:
-            event_description = f"{event.humanized_description} for application '${event.application_name}'"
+            event_description = f"{event.humanized_description} for application '{event.application_name}'"
             self.logger.info("Received event: %s", event_description)
