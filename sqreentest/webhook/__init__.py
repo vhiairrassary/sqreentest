@@ -1,10 +1,14 @@
 from functools import wraps
 import hmac
 import hashlib
+import logging
 from typing import Sequence
-from flask import abort, request
+from flask import abort, request, jsonify
 from sqreentest.env import sqreen_webhook_secret
 from sqreentest.notifications import Event, Target
+
+# pylint: disable=invalid-name
+log = logging.getLogger()
 
 
 def _check_signature(secret_key: bytes, request_signature: str, request_body: bytes) -> bool:
@@ -21,7 +25,8 @@ def validate_signature(func):
         request_signature = request.headers["X-Sqreen-Integrity"]
 
         if not _check_signature(sqreen_webhook_secret(), request_signature, request_body):
-            abort(401)
+            log.warning("Unauthorized webhook received")
+            return jsonify({"status": "unauthorized"}), 401
 
         return func(*args, **kwargs)
 
@@ -34,9 +39,9 @@ def handler(targets: Sequence[Target]):
         # TODO: validate JSON schema
         events = []
         for event_json in request.json:
+            # Unlike specified "application_id" is **not** present in "test" event send when saving webhook
             event = Event(
                 event_json["sqreen_payload_type"],
-                event_json["application_id"],
                 event_json["application_name"],
                 event_json["environment"],
                 event_json["id"],
@@ -50,4 +55,4 @@ def handler(targets: Sequence[Target]):
 
         target.handle(events)
 
-    return "OK"
+    return jsonify({"status": "ok"}), 200

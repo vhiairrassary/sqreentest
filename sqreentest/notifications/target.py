@@ -5,7 +5,6 @@ from typing import Sequence
 @dataclass
 class Event:
     sqreen_payload_type: str
-    application_id: str
     application_name: str
     environment: str
     id: str

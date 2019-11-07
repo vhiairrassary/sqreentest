@@ -17,6 +17,7 @@ pytest = "^3.0"
 pytest-cov = "^2.8"
 pylint = "^2.4"
 black = {version = "^18.3-alpha.0", allows-prereleases = true}
+mock = "^3.0"
 
 [tool.black]
 line-length = 120
