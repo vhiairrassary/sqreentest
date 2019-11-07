@@ -53,7 +53,7 @@ Implemented targets:
 
 ## Questions
 
-1. Currently if a webhook is not handled (bug in code, target in unavailable, etc.) then it disappears as it is not
+1. Currently if a webhook is not handled (bug in code, a target is unavailable, etc.) then it disappears as it is not
 stored in this application for retry (in a database for example). But I think in case of webhooks, it is the
 responsibility of the origin server to retry (possibly up to N times for example) until the destination returns a
 successful response (for example the infrastructure powering the destination server might be down). Did I miss something?
